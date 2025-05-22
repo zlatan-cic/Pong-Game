@@ -1,4 +1,5 @@
 #include "Bat.h"
+#include <iostream>
 #include <sstream>
 #include <cstdlib>
 #include <SFML/Graphics.hpp>
@@ -98,6 +99,13 @@ int main()
                 // reset the lives
                 lives = 3;
             }
+        }
+
+        // Handle ball hitting the top
+        if (ball.getPosition().top < 0)
+        {
+            std::cout << "HIT DETECTED\n";
+            ball.reboundBatOrTop();
         }
 
         // Handle ball hitting sides
