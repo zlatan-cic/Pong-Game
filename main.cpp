@@ -70,21 +70,6 @@ int main()
         }
 
 
-        /*
-        Update the bat, the ball and the HUD
-        *****************************
-        *****************************
-        *****************************
-        */
-        // Update the delta time
-        Time dt = clock.restart();
-        bat.update(dt);
-        ball.update(dt);
-        // Update the HUD text
-        std::stringstream ss;
-        ss << "Score:" << score << "  Lives:" << lives;
-        hud.setString(ss.str());
-
         // Handle ball hitting the bottom
         if (ball.getPosition().top > window.getSize().y)
         {
@@ -115,12 +100,47 @@ int main()
             ball.reboundSides();
         }
 
+
         // Has the ball hit the bat?
         if (ball.getPosition().intersects(bat.getPosition()))
         {
             // Hit detected so reverse the ball and score a point
             ball.reboundBatOrTop();
         }
+
+        // Checing the bat is hiting sides left or righr
+        if (bat.getPosition().left < 0 && bat.isMovingLeft())
+        {
+            std::cout << "hit left side";
+            bat.stopLeft();
+        }
+
+        if (bat.getPosition().left + bat.getPosition().width > window.getSize().x
+            && bat.isMovingRight()
+            )
+        {
+            std::cout << "hit right side";
+            bat.stopRight();
+        }
+
+        /*
+        Update the bat, the ball and the HUD
+        *****************************
+        *****************************
+        *****************************
+        */
+        // Update the delta time
+        Time dt = clock.restart();
+        ball.update(dt);
+        bat.update(dt);
+
+        // Update the HUD text
+        std::stringstream ss;
+        ss << "Score:" << score << "  Lives:" << lives;
+        hud.setString(ss.str());
+
+        
+
 
 
         /*

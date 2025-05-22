@@ -42,3 +42,13 @@ void Bat::update(Time dt)
     }
     m_Shape.setPosition(m_Position);
 }
+
+bool Bat::isMovingLeft()
+{
+    return m_MovingLeft;
+}
+
+bool Bat::isMovingRight()
+{
+    return m_MovingRight;
+}

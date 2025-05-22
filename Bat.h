@@ -18,5 +18,10 @@ public:
     void moveRight();
     void stopLeft();
     void stopRight();
+
+    bool isMovingLeft();
+    bool isMovingRight();
+
     void update(Time dt);
+
 };
